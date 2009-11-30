@@ -387,6 +387,12 @@ public class SQLHelper {
         String tableName = resultSet.getString(3);
         String columnName = resultSet.getString(4);
         int sqlType = resultSet.getInt(5);
+        //If Types.DISTINCT like SQL DOMAIN, then get Source Date Type of SQL-DOMAIN
+        if(sqlType == java.sql.Types.DISTINCT)
+        {
+            sqlType = resultSet.getInt("SOURCE_DATA_TYPE");
+        }
+        
         String sqlTypeName = resultSet.getString(6);
 //        int columnSize = resultSet.getInt(7);
         int nullable = resultSet.getInt(11);
